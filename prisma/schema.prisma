@@ -7,8 +7,8 @@
 
 //defines how Prisma generates the client code used in the app
 generator client {
-  provider = "prisma-client" //Tells Prisma to generate the JavaScript/TypeScript Prisma Client
-  output   = "../lib/generated/prisma" //Specifies where the generated client code will be saved
+  provider = "prisma-client-js" //Tells Prisma to generate the JavaScript/TypeScript Prisma Client
+  // output   = "../lib/generated/prisma" //Specifies where the generated client code will be saved
 }
 
 //configures database connection
@@ -32,9 +32,10 @@ enum AppointmentStatus {
 //defines a User table in database
 model User {
   id String @id @default(uuid()) //creates an id column of string type, where id is primary key auto generated as a UUID
+  email String @unique
   name String
   password String
-  role String
+  role Role
 
   patient Patient?
   doctor Doctor?

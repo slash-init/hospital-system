@@ -4,11 +4,73 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+
+//defines how Prisma generates the client code used in the app
 generator client {
-  provider = "prisma-client"
-  output   = "../lib/generated/prisma"
+  provider = "prisma-client" //Tells Prisma to generate the JavaScript/TypeScript Prisma Client
+  output   = "../lib/generated/prisma" //Specifies where the generated client code will be saved
 }
 
+//configures database connection
 datasource db {
-  provider = "postgresql"
+  provider = "postgresql" //specifies which db is being used
+}
+
+//enum is a special type that restricts a value to a fixed set of options
+enum Role {
+  ADMIN
+  DOCTOR
+  PATIENT
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+}
+
+//defines a User table in database
+model User {
+  id String @id @default(uuid()) //creates an id column of string type, where id is primary key auto generated as a UUID
+  name String
+  password String
+  role String
+
+  patient Patient?
+  doctor Doctor?
+}
+
+model Patient {
+  id     String @id @default(uuid()) //primary key
+  userId String @unique //links to the User table, @unique ensures one patient per user
+  user   User   @relation(fields: [userId], references: [id]) //connects this patient to their User account
+
+  age    Int 
+  gender String
+  phone  String
+
+  appointments Appointment[] //One-to-many - a patient can have multiple appointments
+}
+
+model Doctor {
+  id String @id @default(uuid())
+  userId String @unique
+  user User @relation(fields: [userId], references: [id])
+
+  specialization String
+  department String
+
+  appointments Appointment[]
+}
+
+model Appointment {
+  id        String @id @default(uuid())
+  patientId String //Foreign key pointing to patient
+  doctorId  String
+
+  patient Patient @relation(fields: [patientId], references: [id]) //relation which patient this appointment is for
+  doctor  Doctor  @relation(fields: [doctorId], references: [id])
+
+  date   DateTime
+  status AppointmentStatus @default(PENDING)
 }

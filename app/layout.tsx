@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -23,7 +25,7 @@ export default function RootLayout({
       <body className={`${inter.variable} font-sans antialiased bg-gray-50`}>
         <div className="min-h-screen flex flex-col">
           {/* Header */}
-          <header className="bg-white/90 backdrop-blur border-b border-gray-200 shadow-md sticky top-0 z-50 transition-all">
+          <header className="bg-linear-to-tr from-[#2563EB] to-[#1E40AF] text-white border-b border-[#1E40AF] shadow-lg sticky top-0 z-50 transition-all">
             <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-20">
                 {/* Logo */}
@@ -43,7 +45,7 @@ export default function RootLayout({
                       />
                     </svg>
                   </div>
-                  <span className="text-2xl font-bold tracking-tight text-gray-900 group-hover:text-[#2563EB] transition-colors">
+                  <span className="text-2xl font-bold tracking-tight text-white group-hover:text-blue-100 transition-colors">
                     MediCare
                   </span>
                 </Link>
@@ -59,7 +61,7 @@ export default function RootLayout({
                     <Link
                       key={href}
                       href={href}
-                      className="relative px-2 py-1 text-gray-600 font-medium hover:text-[#2563EB] transition-colors group focus:outline-none focus-visible:ring-4 focus-visible:ring-[#2563EB]/30 rounded-lg"
+                      className="relative px-2 py-1 text-blue-100 font-medium hover:text-white transition-colors group focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-100/30 rounded-lg"
                     >
                       <span>{label}</span>
                       <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-linear-to-r from-[#60A5FA] to-[#2563EB] scale-x-0 group-hover:scale-x-100 transition-transform origin-left rounded-full" />
@@ -69,17 +71,11 @@ export default function RootLayout({
 
                 {/* Auth Buttons */}
                 <div className="flex items-center space-x-4">
-                  <Link
-                    href="/login"
-                    className="text-gray-600 hover:text-[#2563EB] font-medium transition-colors px-4 py-2 rounded-lg hover:bg-[#EFF6FF] focus:outline-none focus-visible:ring-4 focus-visible:ring-[#2563EB]/30"
-                  >
-                    Sign In
+                  <Link href="/login">
+                    <Button variant="ghost" size="lg" className="text-white border-white hover:bg-blue-100/10">Sign In</Button>
                   </Link>
-                  <Link
-                    href="/register"
-                    className="bg-linear-to-tr from-[#2563EB] to-[#1E40AF] shadow-md text-white px-6 py-3 rounded-lg font-semibold hover:from-[#1E40AF] hover:to-[#2563EB] transition-all border border-[#2563EB]/20 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#2563EB]/30"
-                  >
-                    Get Started
+                  <Link href="/register">
+                    <Button variant="default" size="lg" className="bg-linear-to-r from-[#2563EB] to-[#1E40AF] text-white font-semibold shadow-md border border-blue-100/20 hover:from-[#1E40AF] hover:to-[#2563EB]">Get Started</Button>
                   </Link>
                 </div>
               </div>
@@ -89,7 +85,7 @@ export default function RootLayout({
           {/* Main Content */}
           <main className="flex-1 bg-linear-to-br from-[#EFF6FF] via-white to-[#BFDBFE] py-10 px-2 md:px-0">
             <div className="max-w-7xl mx-auto w-full animate-fade-in">
-              {children}
+              <Card className="p-8 shadow-lg rounded-2xl bg-white/90 border border-gray-200">{children}</Card>
             </div>
           </main>
 

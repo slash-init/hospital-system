@@ -4,7 +4,26 @@ import { verifyToken } from "@/lib/auth";
 
 export async function GET(req: Request) {
   try {
-    const doctors = await prisma.doctor.findMany();
+    const user = await verifyToken(req);
+
+    if (!user?.userId) {
+      return NextResponse.json(
+        { error: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
+    const doctors = await prisma.doctor.findMany({
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+            role: true
+          }
+        }
+      }
+    });
     return NextResponse.json(doctors);
   } catch (error) {
     console.error("Failed to fetch doctors:", error);

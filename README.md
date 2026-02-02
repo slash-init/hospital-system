@@ -1,8 +1,8 @@
 # Hospital Management System
 
-A modern, full-stack hospital management platform built with Next.js 16, TypeScript, Prisma, and PostgreSQL. Features role-based access control for patients, doctors, and administrators with real-time appointment scheduling and management.
+A modern, full-stack hospital management platform built with Next.js 16, TypeScript, Prisma, and PostgreSQL. Features role-based access control for patients, doctors, and administrators with real-time appointment management.
 
-## 🌟 Features
+## Features
 
 ### Authentication & Authorization
 - JWT-based authentication with 7-day token expiry
@@ -12,29 +12,29 @@ A modern, full-stack hospital management platform built with Next.js 16, TypeScr
 - Session persistence with localStorage
 
 ### Patient Features
-- 📋 Complete patient profile management
-- 📅 Book appointments with any available doctor
-- 📱 View all scheduled appointments
-- 📊 Track appointment status (Pending, Confirmed, Completed, Cancelled)
-- 🔍 Search and filter functionality
+- Complete patient profile management
+- Book appointments with any available doctor
+- View all scheduled appointments
+- Track appointment status (Pending, Confirmed, Completed, Cancelled)
+- Search and filter functionality
 
 ### Doctor Features
-- 👥 View today's or all upcoming appointments
-- ✅ Confirm pending appointments
-- ✔️ Mark appointments as completed
-- ❌ Cancel appointments
-- 📈 Manage patient queue
+- View today's or all upcoming appointments
+- Confirm pending appointments
+- Mark appointments as completed
+- Cancel appointments
+- Manage patient queue
 
 ### Admin Features
-- 📊 Dashboard with key statistics
+- Dashboard with key statistics
   - Total patients count
   - Total doctors count
   - Pending appointments count
-- 👀 View all patients and doctors
-- 📋 Monitor all system appointments
-- 🔧 System-wide management capabilities
+- View all patients and doctors
+- Monitor all system appointments
+- System-wide management capabilities
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
@@ -47,7 +47,7 @@ A modern, full-stack hospital management platform built with Next.js 16, TypeScr
 - **Password Hashing**: bcrypt
 - **Date Handling**: date-fns
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 hospital-system/
@@ -95,7 +95,7 @@ hospital-system/
 └── package.json
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js 18+
@@ -132,7 +132,7 @@ hospital-system/
 
    Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 📚 Available Scripts
+## Available Scripts
 
 ```bash
 # Development
@@ -148,12 +148,12 @@ npm run lint -- --fix    # Auto-fix linting issues
 
 # Database
 npm run seed             # Seed demo data
-npx prisma studio       # Open Prisma Studio
+npx prisma studio        # Open Prisma Studio
 npx prisma migrate dev   # Create and apply migrations
 npx prisma migrate reset # Reset database
 ```
 
-## 🔐 Authentication Flow
+## Authentication Flow
 
 1. **Registration**: User creates account with name, email, password, and role (PATIENT or DOCTOR)
 2. **Password Hashing**: Password hashed with bcrypt (10 rounds)
@@ -162,7 +162,7 @@ npx prisma migrate reset # Reset database
 5. **Protected Routes**: All API endpoints verify JWT and check user authorization
 6. **Auto-Redirect**: Logged-in users automatically redirected to their role-specific dashboard
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### User
 - id, name, email, password (hashed), role (PATIENT/DOCTOR/ADMIN)
@@ -176,7 +176,7 @@ npx prisma migrate reset # Reset database
 ### Appointment
 - id, patientId (FK), doctorId (FK), date, status (PENDING/CONFIRMED/COMPLETED/CANCELLED)
 
-## 🧪 Demo Credentials
+## Demo Credentials
 
 All demo accounts have password: `password123`
 
@@ -191,21 +191,21 @@ All demo accounts have password: `password123`
 - alice.johnson@email.com
 - bob.smith@email.com
 
-Run `npm run seed` to populate the database with all demo data.
+Run `npm run seed` to populate the database with demo data.
 
-## 🔒 Security Features
+## Security Features
 
-- ✅ JWT token-based authentication
-- ✅ Bcrypt password hashing
-- ✅ Role-based authorization checks on all API endpoints
-- ✅ Protected routes with ProtectedRoute component
-- ✅ Environment variable for AUTH_SECRET
-- ✅ Input validation with Zod schemas
-- ✅ CORS-safe API endpoints
-- ✅ XSS protection through React
-- ✅ Secure session management with localStorage
+- JWT token-based authentication
+- Bcrypt password hashing
+- Role-based authorization checks on all API endpoints
+- Protected routes with ProtectedRoute component
+- Environment variable for AUTH_SECRET
+- Input validation with Zod schemas
+- CORS-safe API endpoints
+- XSS protection through React
+- Secure session management with localStorage
 
-## 🎨 UI Components
+## UI Components
 
 All components built with Tailwind CSS and shadcn/ui patterns:
 - Button - Primary, outline, and destructive variants
@@ -216,14 +216,14 @@ All components built with Tailwind CSS and shadcn/ui patterns:
 - Table - Data table with headers and rows
 - ProtectedRoute - Wrapper for role-based route access
 
-## 📱 Responsive Design
+## Responsive Design
 
 - Mobile-first approach
 - Responsive grid layouts
 - Touch-friendly buttons and forms
 - Optimized for desktop, tablet, and mobile screens
 
-## 🐛 Error Handling
+## Error Handling
 
 - Comprehensive try-catch blocks in API routes
 - User-friendly error messages with toast notifications
@@ -231,7 +231,7 @@ All components built with Tailwind CSS and shadcn/ui patterns:
 - Validation error feedback in forms
 - Safe date handling with error fallbacks
 
-## 🚦 API Endpoints
+## API Endpoints
 
 ### Authentication
 - `POST /api/auth/register` - Register new user
@@ -251,7 +251,7 @@ All components built with Tailwind CSS and shadcn/ui patterns:
 - `GET /api/doctors` - List all doctors
 - `POST /api/doctors` - Create doctor profile
 
-## 📦 Dependencies
+## Dependencies
 
 Key npm packages:
 - `next` - React framework
@@ -266,7 +266,7 @@ Key npm packages:
 - `jsonwebtoken` - JWT tokens
 - `tailwindcss` - Styling
 
-## 🔄 Development Workflow
+## Development Workflow
 
 1. Create feature branch from main
 2. Make changes and test locally
@@ -276,7 +276,7 @@ Key npm packages:
 6. Push and create pull request
 7. Merge after code review
 
-## 📝 Conventions
+## Conventions
 
 - **TypeScript**: All components and utilities use TypeScript
 - **Naming**: camelCase for variables, PascalCase for components
@@ -284,14 +284,12 @@ Key npm packages:
 - **Imports**: Use `@/` for absolute imports
 - **Comments**: Add comments for complex logic
 
-## 🤝 Contributing
+## Contributing
 
-This is a demonstration project showcasing modern full-stack development practices with Next.js 16, TypeScript, and PostgreSQL.
+Contributions welcome. Please open an issue or submit a pull request.
 
-## 📄 License
+## License
 
 MIT
 
 ---
-
-**Built with ❤️ using Next.js 16, TypeScript, and PostgreSQL**

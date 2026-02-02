@@ -16,7 +16,7 @@ export async function GET(req: Request) {
             );
         }
 
-        let where: any = {};
+        const where: Record<string, unknown> = {};
 
         // For non-admin users, require valid 'me' parameter
         if (user.role !== "ADMIN") {

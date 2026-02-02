@@ -53,7 +53,7 @@ export async function POST(req: Request) {
                 name,
                 email,
                 password: hashedPassword,
-                role: normalizedRole,
+                role: normalizedRole as 'PATIENT' | 'DOCTOR',
             },
         });
 
@@ -75,7 +75,7 @@ export async function POST(req: Request) {
             }, 
             { status: 201 }
         );
-    } catch (error) {
+    } catch {
         return NextResponse.json(
             { error: "Something went wrong" },
             { status: 500 }
